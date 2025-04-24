@@ -1,0 +1,316 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+:root {
+  --bg: #1e1e2f;
+  --text: #fff;
+  --accent: #ffd54f;
+  --highlight: #61dafb;
+}
+
+.light-mode {
+  --bg: #f4f4f4;
+  --text: #111;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* General Section Layout */
+section {
+  padding: 60px 20px;
+  margin: auto;
+  max-width: 1000px; /* Set a max-width for all sections */
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* Intro Section */
+.intro {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 80px 20px;
+  background-color: var(--bg);
+  max-width: 1000px; /* Constrain the intro section */
+  margin: auto;
+  height: 90vh; /* Full height of the screen */
+}
+
+.intro {
+  padding-top: 120px; /* adjust as needed depending on navbar height */
+}
+
+.intro-left, .intro-right {
+  flex: 1;
+  min-width: 320px;
+  position: relative;
+}
+
+.intro-left {
+  margin-right: 50px;
+}
+
+.intro-left h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+.intro-left p {
+  font-size: 1.2rem;
+  color: #ccc;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.intro-right {
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.glow-profile {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glow-border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 6px;
+  background: conic-gradient(
+    from 0deg,
+    #ff00cc,
+    #3333ff,
+    #00ffff,
+    #33ff33,
+    #ffff00,
+    #ff6600,
+    #ff0000,
+    #ff00cc
+  );
+  animation: glow-rotate 6s linear infinite;
+  z-index: 1;
+  filter: blur(8px);
+}
+
+.glow-profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #0f172a;
+  z-index: 2;
+  position: relative;
+  background-color: #0f172a;
+}
+
+@keyframes glow-rotate {
+  0% {
+    transform: rotate(0deg);
+    filter: hue-rotate(0deg) blur(8px);
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: hue-rotate(360deg) blur(8px);
+  }
+}
+
+/* About Section */
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  padding: 80px 10%;
+  max-width: 1000px; /* Constrain the about section */
+  margin: auto;
+  height: 100vh; /* Full height of the screen */
+}
+
+.about-left, .about-right {
+  flex: 1;
+  min-width: 320px;
+  position: relative;
+}
+
+.about-left {
+  margin-right: 50px;
+}
+
+.about-right {
+  flex: 3;
+  padding-left: 30px;
+  min-width: 500px;
+}
+
+.about-right h2 {
+  color: white;
+  font-size: 2rem;
+}
+
+.about-right h2 span {
+  color: #00ffff;
+}
+
+.about-right h3 {
+  color: white;
+  margin-top: 10px;
+  font-size: 1.3rem;
+}
+
+.about-right p {
+  color: #ccc;
+  margin: 20px 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00ffff;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #00d9d9;
+}
+
+/* Project Cards */
+.project-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1000px; /* Constrain the project section */
+  margin: auto;
+  height: 90vh; /* Full height of the screen */
+}
+
+.card {
+  background-color: #373852;
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Contact */
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px; /* Set max-width for the contact form */
+  margin: auto;
+}
+
+input, textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--highlight);
+  color: #111;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #181828;
+  max-width: 1000px; /* Constrain the footer section */
+  margin: auto;
+}
+
+/* Pop-up effect animation */
+@keyframes pop-up {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
