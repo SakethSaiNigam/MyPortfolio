@@ -11,6 +11,48 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+.animated-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* Behind everything */
+}
+
+.blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,255,255,0.3), transparent);
+  border-radius: 50%;
+  animation: floatBlob 20s ease-in-out infinite;
+  filter: blur(40px);
+}
+
+.blob.delay-1 {
+  left: 10%;
+  top: 20%;
+  animation-delay: 2s;
+}
+
+.blob.delay-2 {
+  left: 70%;
+  top: 60%;
+  animation-delay: 4s;
+}
+
+@keyframes floatBlob {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  50% {
+    transform: translateY(-100px) translateX(50px) scale(1.2);
+  }
+}
+
+
 :root {
   --bg: #1e1e2f;
   --text: #fff;
@@ -32,6 +74,7 @@ section {
   padding: 60px 20px;
   margin: auto;
   max-width: 1000px; /* Set a max-width for all sections */
+  scroll-margin-top: 100px;
 }
 
 /* Navbar */
@@ -45,6 +88,10 @@ section {
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+html {
+  scroll-padding-top: 100px; /* navbar height offset */
 }
 
 .logo {
@@ -78,7 +125,7 @@ section {
   flex-wrap: nowrap;
   align-items: center;
   padding: 80px 20px;
-  background-color: var(--bg);
+  background-color: transparent;
   max-width: 1000px; /* Constrain the intro section */
   margin: auto;
   height: 90vh; /* Full height of the screen */
@@ -99,16 +146,16 @@ section {
 }
 
 .intro-left h2 {
-  font-size: 2rem;
+  font-size: 2.8rem; /* increased from 2rem */
   font-weight: bold;
   color: var(--highlight);
 }
 
 .intro-left p {
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* increased from 1.2rem */
   color: #ccc;
-  line-height: 1.6;
-  margin-top: 10px;
+  line-height: 1.8;
+  margin-top: 15px;
 }
 
 .intro-right {
@@ -120,8 +167,8 @@ section {
 
 .glow-profile {
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -172,16 +219,40 @@ section {
   }
 }
 
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+.delay-2 {
+  animation-delay: 0.4s;
+}
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 /* About Section */
 .about {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: nowrap;
-  padding: 80px 10%;
-  max-width: 1000px; /* Constrain the about section */
+  padding: 80px 20px; /* changed from 80px 10% */
+  max-width: 1000px;
   margin: auto;
-  height: 100vh; /* Full height of the screen */
+  height: 90vh; /* matched to intro section height */
 }
 
 .about-left, .about-right {
@@ -195,9 +266,9 @@ section {
 }
 
 .about-right {
-  flex: 3;
-  padding-left: 30px;
-  min-width: 500px;
+  flex: 1;
+  padding-left: 150px; /* same as intro-left's margin-right */
+  min-width: 320px;
 }
 
 .about-right h2 {
@@ -222,6 +293,26 @@ section {
   font-size: 1rem;
 }
 
+.about-left .glow-profile {
+  width: 300px;  /* match intro */
+  height: 300px; /* match intro */
+}
+
+.typing-about {
+  color: #ccc;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #00ffff; }
+}
+
+
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -237,56 +328,449 @@ section {
   background-color: #00d9d9;
 }
 
+/* Services Section */
+.services {
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+  align-items: flex-start; /* Change from center to flex-start to reduce vertical space */
+  flex-direction: column;
+  height: auto;           /* Allow content to adjust based on content */
+  text-align: center;
+  padding: 0 20px; /* Add padding to ensure content doesn't touch edges on small screens */
+}
+
+/* My Services Title */
+.services h2 {
+  font-size: 2.5rem;
+  color: white;
+  align-items: flex-start; 
+  max-width: 1000px;
+  margin-left: 700px;
+  margin-bottom: 20px; /* Reduced margin-bottom to decrease space between title and cards */
+  font-weight: bold;  /* Make the title bold */
+}
+
+/* Service Cards Container */
+.service-cards {
+  display: flex;
+  gap: 20px; /* Adjust this gap for better spacing between the cards */
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  width: 100%; /* Allow cards to adjust width based on viewport */
+  margin-top: 0; /* Ensures no margin is added on top of the cards */
+  margin-left: 1000px;
+}
+
+/* Individual Service Card */
+.service-card {
+  background-color: #373852;
+  padding: 25px;
+  border-radius: 12px;
+  width: 250px;
+  height: 250px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-card h3 {
+  color: #00ffff;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.service-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Image inside the Service Card */
+.service-image {
+  width: 100px; /* Set image width */
+  height: 100px; /* Set image height */
+  object-fit: contain;
+  margin-bottom: 15px; /* Space between image and text */
+  margin-left: 30px;
+}
+
+.about, .services {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 80px 20px;
+}
+
+.about-left, .about-right, .services {
+  flex: 1;
+  min-width: 320px;
+  margin-right: 50px;
+  /* Give space between the two sections */
+}
+
+.services {
+  flex: 2; /* Make services section wider */
+  margin-left: 50px;
+}
+
+.service-cards {
+  display: flex;
+  gap: 30px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  width: 100%; /* Allow cards to adjust width based on viewport */
+  margin-top: 40px; /* Increased the margin-top to create more space between the title and cards */
+  margin-left: 1000px; /* Automatically push to the right side */
+}
+
+@media (max-width: 768px) {
+  /* About Section */
+  .about, .services {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-left, .about-right, .services {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .service-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.services {
+  padding: 80px 20px;
+  margin-bottom: 300px; /* Increased spacing below */
+}
+
+.projects {
+  padding: 100px 20px;
+  scroll-margin-top: 100px;
+}
+
+
+/* Skills Section */
+.skills {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: transparent; /* Transparent background */
+  color: var(--text);
+  margin-top: 60px; /* Gap from previous section */
+}
+
+.skills h2 {
+  font-size: 2rem;
+  color: var(--highlight);
+  margin-bottom: 40px;
+}
+
+/* Container for the two columns (Tech Stack & Soft Skills) */
+.skills-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px; /* Space between columns */
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+/* Tech Stack */
+.tech-stack {
+  flex: 1;
+  min-width: 300px;
+  background-color: transparent; /* Transparent background */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.tech-stack h3 {
+  font-size: 1.5rem;
+  color: var(--highlight);
+  margin-bottom: 20px;
+}
+
+.circle-skills {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.circle-skill {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 15px;
+}
+
+.circle-skill svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.bg-circle {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 8;
+}
+
+.progress-circle {
+  fill: none;
+  stroke: var(--highlight);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease;
+}
+
+.percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.circle-skill p {
+  font-size: 1rem;
+  color: #fff;
+  margin-top: 10px;
+}
+
+/* Soft Skills */
+.soft-skills {
+  flex: 1;
+  min-width: 300px;
+  background-color: transparent; /* Transparent background */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.soft-skills h3 {
+  font-size: 1.5rem;
+  color: var(--highlight);
+  margin-bottom: 20px;
+}
+
+/* Skill Bars for Soft Skills */
+.skill {
+  margin-bottom: 20px;
+}
+
+.skill p {
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+.skill-bar {
+  position: relative;
+  height: 20px;
+  background-color: #2c2f3b;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--highlight);
+  border-radius: 10px;
+}
+
+.percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+  .skills-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.skills {
+  padding: 80px 20px;
+  margin-bottom: 300px; /* Increased spacing below */
+}
+
+.projects {
+  padding: 100px 20px;
+  scroll-margin-top: 100px;
+}
+
 /* Project Cards */
 .project-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   justify-content: center;
-  max-width: 1000px; /* Constrain the project section */
+  padding: 40px 20px;
+  max-width: 1000px;
   margin: auto;
-  height: 90vh; /* Full height of the screen */
 }
 
 .card {
   background-color: #373852;
   padding: 20px;
   border-radius: 12px;
-  width: 250px;
-  transition: transform 0.3s ease;
+  width: 280px;
+  height: 180px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.card h3 {
+  color: #00ffff;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.card p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 255, 255, 0.3);
 }
 
-/* Contact */
-.contact form {
+.projects {
+  padding: 80px 20px;
+  margin-bottom: 280px; /* Increased spacing below */
+}
+
+.contact {
+  padding: 100px 20px;
+  scroll-margin-top: 100px;
+}
+
+/* Contact Section */
+.contact {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 600px; /* Set max-width for the contact form */
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: transparent;
   margin: auto;
 }
 
-input, textarea {
+.contact-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;  /* Increased margin-bottom for space between title and form */
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 0.5s; /* Delay to animate after text */
+}
+
+/* Contact Container */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px; /* Maximum width of the section */
+  width: 100%;
+  gap: 20px;
+}
+
+/* Left Side: Text Section */
+.contact-text {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  text-align: left;
+  color: var(--text);
+}
+
+.contact-text h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+.contact-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+/* Right Side: Form Section */
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
   padding: 10px;
   border-radius: 6px;
   border: none;
   font-size: 1rem;
 }
 
-button {
+.contact-form button {
   padding: 10px 20px;
   border: none;
-  background-color: var(--highlight);
-  color: #111;
+  background-color: var(--bg);
+  color: white;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  opacity: 0.9;
+.contact-form button:hover {
+  background-color: #00d9d9;
+}
+
+.contact-title h3 span {
+  color: #00ffff;
+}
+
+.contact {
+  padding: 80px 20px;
+  margin-bottom: 150px; /* Increased spacing below */
+}
+
+.footer {
+  padding: 100px 20px;
+  scroll-margin-top: 100px;
 }
 
 /* Footer */

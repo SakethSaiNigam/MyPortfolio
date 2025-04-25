@@ -6,7 +6,13 @@
   <title>My Portfolio</title>
   <link rel="stylesheet" href="stylesheet.css" />
 </head>
+<div class="animated-blobs">
+  <div class="blob"></div>
+  <div class="blob delay-1"></div>
+  <div class="blob delay-2"></div>
+</div>
 <body>
+  
 
   <!-- Navigation Bar -->
 <nav class="navbar">
@@ -22,12 +28,12 @@
 </nav>
 
   <!-- New Profile Picture Section Above About Me -->
-<section class="intro">
+<section class="intro" id="home">
   <div class="intro-left">
-    <h2>Hi, I'm Saketh Sai Nigam Kanduri</h2>
-    <p>Welcome to my portfolio! </p>
-    <p>I am a Software Developer with a passion for Data Science, working on innovative and impactful projects.</p>
-  </div>
+    <h2 class="fade-in delay-1">Hi, I'm Saketh Sai Nigam Kanduri</h2>
+    <p class="fade-in delay-2">Welcome to my portfolio!</p>
+    <p class="fade-in delay-3">I am a Software Developer with a passion for Data Science, working on innovative and impactful projects.</p>
+  </div>  
   <div class="intro-right">
     <div class="glow-profile">
       <div class="glow-border"></div>
@@ -48,13 +54,128 @@
     <div class="about-right">
       <h2>About <span>Me</span></h2>
       <h3>Software Developer!</h3>
-      <p style="text-align: justify">
-        I’m Saketh Sai Nigam Kanduri, a dedicated Software Developer with a passion for Data Science. With a Master’s in Data & Computational Science from University College Dublin, I specialize in Python development, building scalable solutions and interactive dashboards. At Capgemini, I’ve worked on developing ETL pipelines and fraud detection systems using Python, SQL, and BigQuery. I thrive on transforming data into actionable insights, developing cloud workflows, and applying AI to solve real-world problems. AWS Cloud Practitioner certified, I’m always exploring new technologies and data challenges.
-      </p>
+      <p class="typing-about" style="text-align: justify;"></p>
+      <script>
+        const aboutText = "I’m Saketh Sai Nigam Kanduri, a dedicated Software Developer with a passion for Data Science. With a Master’s in Data & Computational Science from University College Dublin, I specialize in Python development, building scalable solutions and interactive dashboards. At Capgemini, I’ve worked on developing ETL pipelines and fraud detection systems using Python, SQL, and BigQuery. I thrive on transforming data into actionable insights, developing cloud workflows, and applying AI to solve real-world problems. AWS Cloud Practitioner certified, I’m always exploring new technologies and data challenges.";
+      
+        let i = 0;
+        function typeAboutText() {
+          if (i < aboutText.length) {
+            document.querySelector(".typing-about").textContent += aboutText.charAt(i);
+            i++;
+            setTimeout(typeAboutText, 20); // Typing speed
+          }
+        }
+      
+        window.addEventListener("load", () => {
+          setTimeout(typeAboutText, 800); // Delay before typing starts
+        });
+      </script>      
       <a href="#contact" class="btn">More About Me !</a>
     
   </section>
   
+  <section class="services" id="services">
+    <h2>My Services</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <img src="/Users/saketh/Desktop/web development.png" alt="Web Development" class="service-image" />
+        <h3>Web Development</h3>
+        <p>Building modern, responsive websites.</p>
+      </div>
+      <div class="service-card">
+        <img src="/Users/saketh/Desktop/Data science.png" alt="Data Science" class="service-image" />
+        <h3>Data Science</h3>
+        <p>Transforming data into actionable insights.</p>
+      </div>
+      <div class="service-card">
+        <img src="/Users/saketh/Desktop/cloud solutions.png" alt="Cloud Solution (AWS)" class="service-image" />
+        <h3>Cloud Solution (AWS)</h3>
+        <p>Providing cloud-based solutions using AWS.</p>
+      </div>
+    </div>
+  </section>  
+
+<!-- Skills Section -->
+<section class="skills" id="skills">
+  <h2>Skills</h2>
+  <div class="skills-container">
+    <!-- Tech Stack Column -->
+    <div class="tech-stack">
+      <h3>Tech Stack</h3>
+      <div class="circle-skills">
+        <div class="circle-skill">
+          <svg>
+            <circle cx="50" cy="50" r="45" class="bg-circle" />
+            <circle cx="50" cy="50" r="45" class="progress-circle" stroke-dasharray="282.6" stroke-dashoffset="42.39" />
+          </svg>
+          <span class="percentage">85%</span>
+          <p>Python</p>
+        </div>
+        <div class="circle-skill">
+          <svg>
+            <circle cx="50" cy="50" r="45" class="bg-circle" />
+            <circle cx="50" cy="50" r="45" class="progress-circle" stroke-dasharray="282.6" stroke-dashoffset="56.52" />
+          </svg>
+          <span class="percentage">75%</span>
+          <p>JavaScript</p>
+        </div>
+        <div class="circle-skill">
+          <svg>
+            <circle cx="50" cy="50" r="45" class="bg-circle" />
+            <circle cx="50" cy="50" r="45" class="progress-circle" stroke-dasharray="282.6" stroke-dashoffset="70.72" />
+          </svg>
+          <span class="percentage">60%</span>
+          <p>React</p>
+        </div>
+        <div class="circle-skill">
+          <svg>
+            <circle cx="50" cy="50" r="45" class="bg-circle" />
+            <circle cx="50" cy="50" r="45" class="progress-circle" stroke-dasharray="282.6" stroke-dashoffset="35.1" />
+          </svg>
+          <span class="percentage">80%</span>
+          <p>AWS</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Soft Skills Column -->
+    <div class="soft-skills">
+      <h3>Soft Skills</h3>
+      <div class="skill">
+        <p>Communication</p>
+        <div class="skill-bar">
+          <div class="progress" style="width: 85%;"></div>
+          <div class="percentage">85%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <p>Problem Solving</p>
+        <div class="skill-bar">
+          <div class="progress" style="width: 90%;"></div>
+          <div class="percentage">90%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <p>Teamwork</p>
+        <div class="skill-bar">
+          <div class="progress" style="width: 80%;"></div>
+          <div class="percentage">80%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <p>Leadership</p>
+        <div class="skill-bar">
+          <div class="progress" style="width: 75%;"></div>
+          <div class="percentage">75%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
   <!-- Projects Section -->
   <section class="projects" id="projects">
@@ -67,19 +188,33 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <h2>Contact Me</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="4" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+<section class="contact" id="contact">
+  <div class="contact-container">
+    <!-- Left Side: Text Section -->
+    <div class="contact-text">
+      <h2>Let's Work Together 🫱🏻‍🫲🏼💪🎯</h2>
+      <p style="text-align: justify;">I would love to hear from you! Whether you have a question, need assistance, or simply want to share your thoughts, don’t hesitate to reach out. Let’s create something amazing together and make your vision a reality.</p>
+      <p><strong>Email:</strong> ✉️ kndrsakethms@gmail.com</p>
+      <p><strong>Phone:</strong> 📞 +353 899582995</p>
+    </div>
+
+    <!-- Right Side: Form Section -->
+    <div class="contact-form">
+      <h3 class="contact-title">Contact <span>Me 🙌</span></h3>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Your Name | Built with ❤️</p>
+    <p>© 2025 Saketh Sai Nigam Kanduri | Built with ❤️</p>
   </footer>
 
   <!-- JavaScript -->

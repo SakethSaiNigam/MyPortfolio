@@ -4,6 +4,7 @@ toggle.addEventListener('click', () => {
   document.body.classList.toggle('light-mode');
 });
 
+
 // Typing Effect
 const text = ["Web Developer", "Designer", "Tech Enthusiast"];
 let i = 0, j = 0, currentText = '', isDeleting = false;
