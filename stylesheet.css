@@ -21,6 +21,39 @@ body {
   z-index: -1; /* Behind everything */
 }
 
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #444;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 180px;
+  z-index: 10;
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-content li a:hover {
+  background-color: #666;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
 .blob {
   position: absolute;
   width: 300px;
@@ -759,7 +792,7 @@ html {
   background-color: #00d9d9;
 }
 
-.contact-title h3 span {
+.contact-title h span {
   color: #00ffff;
 }
 
